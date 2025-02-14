@@ -29,10 +29,10 @@ public class ExcelServiceImpl implements ExcelService {
         List<Integer> numbers = new ArrayList<>();
         try (FileInputStream inputStream = new FileInputStream(excelFile)) {
             Workbook workbook = new XSSFWorkbook(inputStream);
-            Sheet sheet = workbook.getSheetAt(0); // Предполагаем, что данные находятся на первом листе
+            Sheet sheet = workbook.getSheetAt(0);
 
             for (Row currentRow : sheet) {
-                if (currentRow.getCell(0).getCellType() == CellType.NUMERIC) { // Проверяем первый столбец
+                if (currentRow.getCell(0).getCellType() == CellType.NUMERIC) {
                     double cellValue = currentRow.getCell(0).getNumericCellValue();
                     numbers.add((int) cellValue);
                 }
