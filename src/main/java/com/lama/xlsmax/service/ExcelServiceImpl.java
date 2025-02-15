@@ -46,6 +46,9 @@ public class ExcelServiceImpl implements ExcelService {
         if (numbers.isEmpty() ) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "В файле нет чисел");
         }
+        if (number > numbers.size()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "В файле меньше " + number + " чисел");
+        }
         int[] arr = SortUtil.mergeSort(numbers
                 .stream()
                 .mapToInt(Integer::intValue).toArray());

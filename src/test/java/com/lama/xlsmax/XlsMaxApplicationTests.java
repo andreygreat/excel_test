@@ -11,10 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class XlsMaxApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
-
-    @Test
     void mergeSort() {
         int[] arr = {10, 4, 22, 5, 7, 55, 19, 8};
         int[] result = SortUtil.mergeSort(arr);
@@ -38,6 +34,13 @@ class XlsMaxApplicationTests {
         assertEquals(44, maxInt);
     }
 
+    @Test
+    void numberOverSize() {
+        ExcelServiceImpl excelService = new ExcelServiceImpl();
+        assertThrows(ResponseStatusException.class, ()-> {
+            excelService.getMaxInt("src/test/resources/int1.xlsx", 100);
+        });
+    }
 
     @Test
     void shouldBadReadExcelFile() {
